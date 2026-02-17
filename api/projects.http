@@ -1,0 +1,26 @@
+@hostname = localhost
+@port = 1234
+@baseUrl = http://{{hostname}}:{{port}}
+
+### Obtener todos los proyectos
+GET {{baseUrl}}/projects
+
+###
+
+### Crear un nuevo proyecto
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+    "title": "Mi Primer Proyecto MVC",
+    "description": "Aprendiendo a separar responsabilidades",
+    "repo_url": "https://github.com/Stresadiz"
+}
+
+### Crear proyecto vacio
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+    "description": "Este no tiene título, debería fallar"
+}
