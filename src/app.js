@@ -8,5 +8,5 @@ app.use(express.json());
 
 app.get('/projects', projectController.getAll)
 app.post('/projects', projectController.create)
-app.delete('/projects/:id', projectController.delete)
+app.delete('/projects/:id', projectController.delete);
 module.exports = app

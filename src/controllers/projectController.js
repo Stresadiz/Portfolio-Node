@@ -1,4 +1,5 @@
 const { getProjects, createProject, getProjectById, deleteProject } = require('../models/projects')
+const { validateProject, validateId } = require('../schemas/projects');
 
 const projectController = {
     getAll: (req, res) => {
@@ -10,40 +11,43 @@ const projectController = {
         }
     },
     create: (req, res) => {
+
+        const result = validateProject(req.body)
+
+        if (!result.success) {
+            return res.status(400).json({ error: result.error.errors });
+        }
+            
         try {
-            const { title, description, repo_url }  = req.body
-
-            if (!title) {
-                return res.status(400).json({ error : 'Titulo debe ser obligatorio'})
-            }
-
-            const newProject = createProject(title, description, repo_url)
+            
+            const newProject = createProject(result.data)
             res.status(201).json(newProject)
 
         } catch (error) {
-            console.log(`Èrror: ${error}`);
-            
             res.status(500).json({message: error})
         }
     },
 
     delete: (req, res) => {
+        const { id } = req.params;
+
+        const result = validateId(id);
+
+        if (!result.success) {
+            return res.status(400).json({ error: 'ID inválido' });
+        }
+
         try {
-            const { id } = req.params.i
             
             const project = getProjectById(id)
 
-            if (!project) {
-                return res.status(400).json({ error : 'ID debe ser obligatorio'})
-            }
+            if (!project) return res.status(404).json({ error: 'No existe' });
 
             deleteProject(id);
 
-            res.status(204).json(project)
+            res.status(200).json({ message: `Proyecto con ID ${id} eliminado correctamente` })
 
         } catch (error) {
-            console.log(`Èrror: ${error}`);
-            
             res.status(500).json({message: error})
         }
     }

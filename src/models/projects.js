@@ -14,20 +14,23 @@ function getProjectById(id) {
     return stmt.get(id); // .get() devuelve el objeto si existe, o undefined si no
 }
 
-function createProject(title, description, repo_url) {
-    const stmt = db.prepare(`
-        INSERT INTO projects (title, description, repo_url)
-        VALUES (?, ?, ?)
-    `);
-    
-    // .run() se usa para INSERT, UPDATE, DELETE
-    const info = stmt.run(title, description, repo_url);
-    
+function createProject(data) {
+    const keys = Object.keys(data);
+    const columns = keys.join(', ');
+    const placeholders = keys.map(() => '?').join(', ');
+    const values = Object.values(data);
+
+    const sql = `
+        INSERT INTO projects (${columns})
+        VALUES (${placeholders})
+    `;
+
+    const stmt = db.prepare(sql);
+    const info = stmt.run(...values); // Usamos el spread operator para pasar el array de valores
+
     return {
         id: info.lastInsertRowid,
-        title,
-        description,
-        repo_url
+        ...data
     };
 }
 

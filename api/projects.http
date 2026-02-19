@@ -12,7 +12,7 @@ POST {{baseUrl}}/projects
 Content-Type: application/json
 
 {
-    "title": "Mi Primer Proyecto MVC",
+    "title": "Mi Primer Proyecto MVC 2",
     "description": "Aprendiendo a separar responsabilidades",
     "repo_url": "https://github.com/Stresadiz"
 }
@@ -24,3 +24,6 @@ Content-Type: application/json
 {
     "description": "Este no tiene título, debería fallar"
 }
+
+### Borrar proyecto
+DELETE {{baseUrl}}/projects/8
