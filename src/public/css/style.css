@@ -1,14 +1,53 @@
+:root{
+    --bg-body-color: #bbcfd7;
+    --bg-btn-color--hover: #ac7e62;
+    --bg-nav-color:#5b828e;
+    
+    --bg-card-color:#d2c8bc;
+    --shadow-card-color: #ba9a88;
+    
+    --bg--budget-color: #493a31;
+    
+    --bg-btn-color-submit: #ece6e0;
+    --color-text-submit: #000000;
+}
+
 body {
-    background-color: #f5f5dc;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-body-color);
+    font-family: "Google Sans", sans-serif;
+}
+
+.navbar{
+    background-color: var(--bg-nav-color);
+}
+.lead{
+    font-size: medium;
+}
+
+.badge{
+    background-color: var(--bg--budget-color);
+}
+
+.card{
+    background-color: var(--bg-card-color);
 }
 
 .project-card {
     transition: transform 0.2s;
     border: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 14px 20px var(--shadow-card-color);
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+}
+
+.btn[type="submit"] {
+    background-color: var(--bg-btn-color-submit);
+    color: var(--color-text-submit);
+}
+
+.btn:hover{
+    background-color: var(--bg-btn-color--hover);
+    border-color: var(--bg-btn-color--hover);
 }

@@ -3,7 +3,9 @@
 <div class="container">
     <header class="mb-5 text-center">
         <h1 class="display-4">Mis Proyectos</h1>
-        <p class="lead text-muted">Explora mi trabajo en ingeniería y automatización.</p>
+        <p class="lead text-muted">Mi enfoque como especialista en QA Automation se centra en garantizar la calidad y eficiencia a través de pruebas automatizadas, utilizando mi dominio en Java y el marco de trabajo .NET. Mi trayectoria incluye una transición de QA manual a automatización, reflejando mi adaptabilidad y compromiso con la innovación tecnológica. 
+            <br>
+        Actualmente, soy estudiante de Ingeniería en Sistemas, lo que enriquece mi enfoque analítico en el diseño de casos de prueba y la detección de errores. Esta formación académica, combinada con mi experiencia práctica, me permite contribuir significativamente al éxito de los proyectos en los que participo, asegurando productos de alta calidad y fortaleciendo la confianza de los clientes en nuestras soluciones tecnológicas.</p>
     </header>
 
     <div class="row">
@@ -21,7 +23,7 @@
                             <% if (project.technologies) { %>
                                 <div class="mb-3">
                                     <% project.technologies.split(',').forEach(tech => { %>
-                                        <span class="badge bg-secondary opacity-75"><%= tech.trim() %></span>
+                                        <span class="badge opacity-75"><%= tech.trim() %></span>
                                     <% }) %>
                                 </div>
                             <% } %>
