@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <header class="mb-5 text-center">
+        <h1 class="display-4">Mis Proyectos</h1>
+        <p class="lead text-muted">Explora mi trabajo en ingeniería y automatización.</p>
+    </header>
+
+    <div class="row">
+        <% if (projects.length === 0) { %>
+            <div class="col-12 text-center">
+                <p>No hay proyectos disponibles por el momento.</p>
+            </div>
+        <% } else { %>
+            <% projects.forEach(project => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= project.title %></h5>
+                            <p class="card-text text-secondary"><%= project.description %></p>
+                            <% if (project.technologies) { %>
+                                <div class="mb-3">
+                                    <% project.technologies.split(',').forEach(tech => { %>
+                                        <span class="badge bg-secondary opacity-75"><%= tech.trim() %></span>
+                                    <% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pb-3">
+                            <a href="<%= project.repo_url %>" target="_blank" class="btn btn-outline-dark btn-sm">GitHub</a>
+                            <% if (project.live_url) { %>
+                                <a href="<%= project.live_url %>" target="_blank" class="btn btn-dark btn-sm">Demo</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
