@@ -3,3 +3,5 @@ node_modules
 dist/
 database\portfolio.sqlite
 .env
+*.sqlite
+*.sqlite-journal

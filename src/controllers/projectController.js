@@ -1,4 +1,4 @@
-const { getProjects, createProject } = require('../models/projects')
+const { getProjects, createProject, getProjectById, deleteProject } = require('../models/projects')
 
 const projectController = {
     getAll: (req, res) => {
@@ -19,6 +19,27 @@ const projectController = {
 
             const newProject = createProject(title, description, repo_url)
             res.status(201).json(newProject)
+
+        } catch (error) {
+            console.log(`Èrror: ${error}`);
+            
+            res.status(500).json({message: error})
+        }
+    },
+
+    delete: (req, res) => {
+        try {
+            const { id } = req.params.i
+            
+            const project = getProjectById(id)
+
+            if (!project) {
+                return res.status(400).json({ error : 'ID debe ser obligatorio'})
+            }
+
+            deleteProject(id);
+
+            res.status(204).json(project)
 
         } catch (error) {
             console.log(`Èrror: ${error}`);
