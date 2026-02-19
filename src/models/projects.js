@@ -11,7 +11,10 @@ function getProjects() {
 
 function getProjectById(id) {
     const stmt = db.prepare('SELECT * FROM projects WHERE id = ?');
-    return stmt.get(id); // .get() devuelve el objeto si existe, o undefined si no
+    
+    const idProject = stmt.get(id);
+
+    return idProject
 }
 
 function createProject(data) {
@@ -37,9 +40,8 @@ function createProject(data) {
 function deleteProject(id) {
     const stmt = db.prepare('DELETE FROM projects WHERE id = ?');
     const info = stmt.run(id);
+
     return info.changes > 0;
 }
-//Ejecutar Query
 
 module.exports = { getProjects, createProject, getProjectById, deleteProject }
-//Devovlerresultado

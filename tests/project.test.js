@@ -1,14 +1,19 @@
 const request = require('supertest');
 const app = require('../src/app');
+const db = require('../database/db');
 
 describe('API de Proyectos (Flujo Dinámico)', () => {
     let createdProjectId;
+
+    afterAll(() => {
+        db.close();
+    });
 
     it('debería crear un nuevo proyecto y retornar su ID', async () => {
         const newProject = {
             title: "Proyecto de Test",
             description: "Creado desde Jest",
-            repo_url: "https://github.com/test/repo"
+            repo_url: "https://github.com/Stresadiz/Portfolio-Node"
         };
 
         const res = await request(app)
