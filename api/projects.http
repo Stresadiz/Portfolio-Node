@@ -1,6 +1,6 @@
 @hostname = localhost
 @port = 1234
-@baseUrl = http://{{hostname}}:{{port}}
+@baseUrl = http://{{hostname}}:{{port}}/api
 
 ### Obtener todos los proyectos
 GET {{baseUrl}}/projects
@@ -12,9 +12,12 @@ POST {{baseUrl}}/projects
 Content-Type: application/json
 
 {
-    "title": "Mi Primer Proyecto MVC 2",
-    "description": "Aprendiendo a separar responsabilidades",
-    "repo_url": "https://github.com/Stresadiz"
+    "title": "PortFolio-Node",
+    "description": "Portfolio de ejemplo de estructuracion de proyecto con MVC",
+    "technologies": "Node,JavaScript,CSS,HTML,Express",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzsM6zsSVj3LttmwxNWDO-TC7EpxXKvABpog&s",
+    "repo_url": "https://github.com/Stresadiz/Portfolio-Node",
+    "live_url": "https://github.com/Stresadiz/Portfolio-Node"
 }
 
 ### Crear proyecto vacio
