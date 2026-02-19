@@ -24,4 +24,4 @@ jobs:
       run: npm install  # Usamos install para aprovechar mejor el cache
 
     - name: Ejecutar Tests de Integración (Jest)
-      run: npm test
+      run: npm test -- --forceExit
