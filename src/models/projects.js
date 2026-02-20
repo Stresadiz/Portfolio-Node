@@ -1,5 +1,4 @@
 //Abir conexion a archivo SqLite
-const { id } = require('zod/locales');
 const db = require('../../database/db');
 
 function getProjects() {

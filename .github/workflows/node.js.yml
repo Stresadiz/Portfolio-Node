@@ -23,5 +23,8 @@ jobs:
     - name: Instalar dependencias
       run: npm install  # Usamos install para aprovechar mejor el cache
 
+    - name: Correr Linter
+      run: npm run lint
+
     - name: Ejecutar Tests de Integración (Jest)
       run: npm test -- --forceExit --detectOpenHandles

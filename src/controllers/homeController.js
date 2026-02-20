@@ -10,7 +10,7 @@ const homeController = {
             })
 
         } catch (error) {
-            res.status(500).send('Error al componer pagina de inicio')
+            res.status(500).send(`Error : ${error}`)
         }
     }
 }

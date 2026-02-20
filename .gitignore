@@ -5,3 +5,4 @@ database\portfolio.sqlite
 .env
 *.sqlite
 *.sqlite-journal
+portfolio.sqlite

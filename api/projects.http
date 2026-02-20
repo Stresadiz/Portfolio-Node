@@ -32,7 +32,7 @@ Content-Type: application/json
 DELETE {{baseUrl}}/projects/8
 
 ### Edit un nuevo proyecto
-PUT {{baseUrl}}/projects/1
+PUT {{baseUrl}}/projects/10
 Content-Type: application/json
 
 {
