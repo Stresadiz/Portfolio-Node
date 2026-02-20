@@ -1,4 +1,5 @@
 //Abir conexion a archivo SqLite
+const { id } = require('zod/locales');
 const db = require('../../database/db');
 
 function getProjects() {
@@ -37,6 +38,35 @@ function createProject(data) {
     };
 }
 
+function editedProject(id, data) {
+
+    if (Object.keys(data).length === 0) return;
+
+    const keys = Object.keys(data);
+    const values = Object.values(data);
+
+    const setClause = keys.map(key => `${key} = ?`).join(', ');
+
+    const sql = `
+        UPDATE projects 
+        SET ${setClause}
+        WHERE id = ?
+    `;
+
+    const stmt = db.prepare(sql);
+    const info = stmt.run(...values, id); 
+
+    if (info.changes === 0) {
+        return null;
+    }
+
+    return {
+        id,
+        ...data
+    };
+
+}
+
 function deleteProject(id) {
     const stmt = db.prepare('DELETE FROM projects WHERE id = ?');
     const info = stmt.run(id);
@@ -44,4 +74,4 @@ function deleteProject(id) {
     return info.changes > 0;
 }
 
-module.exports = { getProjects, createProject, getProjectById, deleteProject }
+module.exports = { getProjects, createProject, getProjectById, deleteProject, editedProject }

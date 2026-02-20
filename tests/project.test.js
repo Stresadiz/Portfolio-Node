@@ -36,6 +36,21 @@ describe('API de Proyectos (Flujo Dinámico)', () => {
         expect(projectExists).toBe(true);
     });
 
+    it('debería poderse editar el proyecto seleccionado', async () => {
+        const editedProject = {
+            title: "Nuevo titulo",
+            description: "Creado desde Jest - y editado a la vez - Otra vez"
+        };
+        
+        const res = await request(app)
+            .put(`/api/projects/${createdProjectId}`)
+            .send(editedProject);
+
+        expect(res.statusCode).toEqual(200);
+
+        expect(res.body).toHaveProperty('id');
+    });
+
     it('debería eliminar el proyecto usando el ID dinámico', async () => {
         const res = await request(app).delete(`/api/projects/${createdProjectId}`);
         

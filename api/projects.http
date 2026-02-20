@@ -30,3 +30,12 @@ Content-Type: application/json
 
 ### Borrar proyecto
 DELETE {{baseUrl}}/projects/8
+
+### Edit un nuevo proyecto
+PUT {{baseUrl}}/projects/1
+Content-Type: application/json
+
+{
+    "title": "PortFolio-Node",
+    "description": "Portfolio de ejemplo de estructuracion de proyecto con MVC"
+}
