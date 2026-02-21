@@ -1,0 +1,21 @@
+@hostname = localhost
+@port = 1234
+@baseUrl = http://{{hostname}}:{{port}}/api
+@baseUrlNoApi = http://{{hostname}}:{{port}}
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc3MTY0MzE2OCwiZXhwIjoxNzcxNjQ2NzY4fQ.PvGLMdfeJSP6nV4fgN66Z5qXzbB65Z1pS7FJSJdr7c0
+
+### Obtener token
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "Passssword5."
+}
+
+### Ingresar a dashboard
+GET {{baseUrl}}/auth/dashboard
+Authorization: Bearer {{adminToken}}
+
+### Ingresar a dashboard sin token
+GET {{baseUrl}}/auth/dashboard

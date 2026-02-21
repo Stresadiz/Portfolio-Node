@@ -1,0 +1,51 @@
+@hostname = localhost
+@port = 1234
+@baseUrl = http://{{hostname}}:{{port}}/api
+@baseUrlNoApi = http://{{hostname}}:{{port}}
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc3MTY0MTEyMiwiZXhwIjoxNzcxNjQ0NzIyfQ.VOUvNDVqdcKAz23GRHw09CNQe6dS6VSIL2Wk_uMUj7A
+
+### Obtener token
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "Passssword5."
+}
+
+### Obtener todos los usuarios
+GET {{baseUrl}}/users
+Authorization: Bearer {{adminToken}}
+
+###
+
+### Crear un nuevo usuario
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "username": "admin3",
+    "password": "Passssword1."
+}
+
+### Crear usuario con name vacio
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "password": "Este user tiene name, debería fallar"
+}
+
+### Borrar usuario
+DELETE {{baseUrl}}/users/4
+Authorization: Bearer {{adminToken}}
+
+### Edit de un usuario
+PUT {{baseUrl}}/users/3
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+    "username": "admin",
+    "password": "Passssword5."
+}
