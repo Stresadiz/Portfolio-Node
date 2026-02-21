@@ -30,4 +30,4 @@ jobs:
       env: 
         ADMIN_USER: ${{ secrets.ADMIN_USER }}
         ADMIN_PASS: ${{ secrets.ADMIN_PASS }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
