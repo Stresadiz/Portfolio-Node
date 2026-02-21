@@ -29,6 +29,6 @@ jobs:
     - name: Ejecutar Tests de Integración (Jest)
       run: npm test -- --forceExit --detectOpenHandles
       env: 
-        ADMIN_USER: ${{ secrets.ADMIN_USER }}
-        ADMIN_PASS: ${{ secrets.ADMIN_PASS }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        ADMIN_USER: ${{ env.ADMIN_USER }}
+        ADMIN_PASS: ${{ env.ADMIN_PASS }}
+        JWT_SECRET: ${{ env.JWT_SECRET }}
