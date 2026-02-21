@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout del código
       uses: actions/checkout@v4
@@ -31,3 +30,7 @@ jobs:
       env: 
         ADMIN_USER: ${{ secrets.ADMIN_USER }}
         ADMIN_PASS: ${{ secrets.ADMIN_PASS }}
+<<<<<<< HEAD
+=======
+        TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
+>>>>>>> b3db7a684e6c3cad7bc1862ab7a8bd67e4c74b7a
