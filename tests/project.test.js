@@ -4,10 +4,26 @@ const db = require('../database/db');
 
 describe('API de Proyectos (Flujo Dinámico)', () => {
     let createdProjectId;
+    let token;
 
     afterAll(() => {
         db.close();
     });
+
+    it('Deberia recuperar bearer token', async () => {
+        const user = {
+            username : process.env.ADMIN_USER,
+            password : process.env.ADMIN_PASS
+        }
+
+        const res = await request(app)
+            .post('/api/auth/login')
+            .send(user);
+
+        expect(res.body).toHaveProperty('bearer_token')
+
+        token = res.body.bearer_token
+    })
 
     it('debería crear un nuevo proyecto y retornar su ID', async () => {
         const newProject = {
@@ -18,6 +34,7 @@ describe('API de Proyectos (Flujo Dinámico)', () => {
 
         const res = await request(app)
             .post('/api/projects')
+            .set('Authorization', `Bearer ${token}`)
             .send(newProject);
 
         expect(res.statusCode).toEqual(201);
@@ -27,7 +44,9 @@ describe('API de Proyectos (Flujo Dinámico)', () => {
     });
 
     it('debería retornar una lista que contenga el proyecto creado', async () => {
-        const res = await request(app).get('/api/projects');
+        const res = await request(app)
+        .get('/api/projects')
+        .set('Authorization', `Bearer ${token}`);
         
         expect(res.statusCode).toEqual(200);
         expect(Array.isArray(res.body)).toBeTruthy();
@@ -44,6 +63,7 @@ describe('API de Proyectos (Flujo Dinámico)', () => {
         
         const res = await request(app)
             .put(`/api/projects/${createdProjectId}`)
+            .set('Authorization', `Bearer ${token}`)
             .send(editedProject);
 
         expect(res.statusCode).toEqual(200);
@@ -52,14 +72,18 @@ describe('API de Proyectos (Flujo Dinámico)', () => {
     });
 
     it('debería eliminar el proyecto usando el ID dinámico', async () => {
-        const res = await request(app).delete(`/api/projects/${createdProjectId}`);
+        const res = await request(app)
+        .delete(`/api/projects/${createdProjectId}`)
+        .set('Authorization', `Bearer ${token}`)
         
         expect(res.statusCode).toEqual(200);
         expect(res.body.message).toMatch(/eliminado/i);
     });
 
     it('debería fallar al intentar borrar el mismo proyecto otra vez', async () => {
-        const res = await request(app).delete(`/api/projects/${createdProjectId}`);
+        const res = await request(app)
+        .delete(`/api/projects/${createdProjectId}`)
+        .set('Authorization', `Bearer ${token}`);
         
         expect(res.statusCode).toEqual(404);
         expect(res.body).toHaveProperty('error');
