@@ -21,10 +21,13 @@ jobs:
         cache: 'npm'
 
     - name: Instalar dependencias
-      run: npm install  # Usamos install para aprovechar mejor el cache
+      run: npm install
 
     - name: Correr Linter
       run: npm run lint
 
     - name: Ejecutar Tests de Integración (Jest)
       run: npm test -- --forceExit --detectOpenHandles
+      env: 
+        ADMIN_USER: ${{ secrets.ADMIN_USER }}
+        ADMIN_PASS: ${{ secrets.ADMIN_PASS }}
