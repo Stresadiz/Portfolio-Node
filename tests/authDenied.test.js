@@ -43,7 +43,7 @@ describe('API de auth (Flujo usuario externo)', () => {
 
     it('Deberia no poder ingresar a dashboard, a pesar de token valido',async () => {
         const res = await request(app)
-            .get(`${apiPath}/dashboard`)
+            .get(`/dashboard`)
             .set('Authorization', `Bearer ${token}`);
 
         expect(res.statusCode).toEqual(401);
