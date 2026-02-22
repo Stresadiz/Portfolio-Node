@@ -11,7 +11,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const methodRes = 'POST';
         const headersRes = {'Content-Type': 'application/json'}
         const bodyRes = JSON.stringify(data)
-        
+
         const res = await fetch('/api/auth/login', {
             method: methodRes,
             headers: headersRes,
@@ -22,6 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         if (res.ok) {
             localStorage.setItem('bearer_token', result.bearer_token);
+            
             window.location.href = '/dashboard'
         } else{
             errorDiv.textContent = result.error || 'Credenciales inválidas';
@@ -29,7 +30,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         }
 
     } catch (error) {
-        console.error('Error en el login:', error);
+        console.error(error)
         errorDiv.textContent = 'Error de conexión con el servidor';
         errorDiv.style.display = 'block';
     }

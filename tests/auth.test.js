@@ -28,7 +28,7 @@ describe('API de auth (Flujo Admin)', () => {
 
     it('Deberia ingresar a dashboard',async () => {
         const res = await request(app)
-            .get(`${apiPath}/dashboard`)
+            .get(`/dashboard`)
             .set('Authorization', `Bearer ${token}`);
 
         expect(res.statusCode).toEqual(200);

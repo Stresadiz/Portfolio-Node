@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 
 const viewRoutes = require('./routes/viewRoutes');
@@ -14,6 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // --- Middlewares ---
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); 
 
 // --- Conexión de Rutas ---
