@@ -28,6 +28,11 @@ const authController = {
         );
 
         res.json({message: "Login exitoso", bearer_token: token})
+    },
+    renderLogin: (req, res) => {
+        res.render('login', {
+            title: 'Login - Portfolio Admin'
+        })
     }
 }
 
