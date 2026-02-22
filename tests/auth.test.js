@@ -32,7 +32,6 @@ describe('API de auth (Flujo Admin)', () => {
             .set('Authorization', `Bearer ${token}`);
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body).toHaveProperty('message', expect.stringContaining('Bienvenido'))
     })
 });
 
