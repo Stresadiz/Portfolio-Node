@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
     "username": "admin",
-    "password": "Passssword5."
+    "password": "xxxxxx"
 }
 
 ### Obtener todos los usuarios
@@ -47,5 +47,5 @@ Authorization: Bearer {{adminToken}}
 
 {
     "username": "admin",
-    "password": "Passssword5."
+    "password": "xxxxxx"
 }
