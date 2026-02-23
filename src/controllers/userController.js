@@ -1,5 +1,5 @@
 const { validateUser, validateUserId } = require('../schemas/user');
-const { getUsers, getUserById, createNewUser, editUserById, deleteUser } = require('../models/user');
+const { getUsers, getUserById, getUserByUsername, createNewUser, editUserById, deleteUser } = require('../models/user');
 
 const userController = {
     getAll: (req, res) => {
@@ -20,10 +20,14 @@ const userController = {
             return  res.status(400).json({error: result.error.errors})
         }
 
+        const userAlreadyExist = getUserByUsername(req.body.username)
+
+        if (userAlreadyExist) {
+            return res.status(409).json({error: 'El usuario ya existe'})
+        }
         try {
             const newUser = createNewUser(result.data);
             res.status(201).json(newUser)
-
         } catch (error) {
             res.status(500).json({message : error.message})
         }
