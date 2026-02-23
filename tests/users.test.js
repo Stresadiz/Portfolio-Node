@@ -7,6 +7,10 @@ describe('API de usuarios (Flujo Admin)', () => {
     
     let idNewUser;
     let token;
+    const newUser = {
+            username : 'admon',
+            password : 'Password1.'
+        }
 
     afterAll(() => {
         db.close();
@@ -37,11 +41,7 @@ describe('API de usuarios (Flujo Admin)', () => {
     });
 
     it('Deberia crear un nuevo usuario y retornar su id', async () => {
-        const newUser = {
-            username : 'admin',
-            password : 'Password1.'
-        }
-
+        
         const res = await request(app)
             .post(apiPath)
             .send(newUser);
@@ -64,9 +64,17 @@ describe('API de usuarios (Flujo Admin)', () => {
         expect(userExists).toBe(true);
     });
 
+    it('Deberia retornar 409 al querer crear usuario ya existente', async () => {
+        const res = await request(app)
+            .post(apiPath)
+            .send(newUser);
+        
+        expect(res.statusCode).toEqual(409);
+    });
+
     it('debería poderse editar el usuario recuperado', async () => {
         const editedUser = {
-            username : 'admin',
+            username : 'admon',
             password : 'Password2.'
         };
         

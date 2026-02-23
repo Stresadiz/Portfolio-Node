@@ -2,7 +2,7 @@
 @port = 1234
 @baseUrl = http://{{hostname}}:{{port}}/api
 @baseUrlNoApi = http://{{hostname}}:{{port}}
-@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc3MTY0MTEyMiwiZXhwIjoxNzcxNjQ0NzIyfQ.VOUvNDVqdcKAz23GRHw09CNQe6dS6VSIL2Wk_uMUj7A
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc3MTgwNjEzNywiZXhwIjoxNzcxODA5NzM3fQ.tjmj7Oed1PMf4FXStYjJtcgKMmZq-tIZ1QSh9HsJS4Y
 
 ### Obtener token
 POST {{baseUrl}}/auth/login
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
     "username": "admin3",
-    "password": "Passssword1."
+    "password": "xxxxxx"
 }
 
 ### Crear usuario con name vacio
@@ -37,7 +37,7 @@ Content-Type: application/json
 }
 
 ### Borrar usuario
-DELETE {{baseUrl}}/users/4
+DELETE {{baseUrl}}/users/5
 Authorization: Bearer {{adminToken}}
 
 ### Edit de un usuario
